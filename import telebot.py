@@ -1,12 +1,14 @@
 import telebot
 import json
 import random
-import private
+import private as key
 
 with open('mierdas.json', 'r') as f:
   datosCacas = json.load(f)
 
-bot = telebot.TeleBot(private.PROD_TOKEN, threaded=False)
+runAsProd = False 
+
+bot = telebot.TeleBot(key.PROD_TOKEN if runAsProd else key.DEV_TOKEN , threaded=False)
 bot.delete_webhook()
 
 @bot.message_handler(func=lambda message: True)
@@ -15,8 +17,8 @@ def cagaste(m):
     print(message)
     user_msg = message['text']
     user_id = str(message['from']['id'])
-
-    if len(user_msg) < 5 and user_msg[0] == "💩":
+    a = len(user_msg) < 5 and user_msg[0] == "💩" and message["chat"]["type"] == ("supergroup" if runAsProd else "private")
+    if a:
         msg = random.choice([
             "\"Sus excrementos era todo lo que daba al mundo; ni una sonrisa, ni un grito, ni un destello en la mirada, ni siquiera el propio olor.\" - Patrick Süskind, libro El perfume",
             "\"El hombre es el animal que observa sus propios excrementos.\" - Platon",
