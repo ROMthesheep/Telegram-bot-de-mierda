@@ -7,7 +7,7 @@ import frasesDeMierda
 with open('mierdas.json', 'r') as f:
   datosCacas = json.load(f)
 
-runAsProd = False 
+runAsProd = True 
 
 bot = telebot.TeleBot(key.PROD_TOKEN if runAsProd else key.DEV_TOKEN , threaded=False)
 bot.delete_webhook()
