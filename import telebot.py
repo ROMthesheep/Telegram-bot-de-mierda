@@ -17,8 +17,7 @@ def cagaste(m):
     print(message)
     user_msg = message['text']
     user_id = str(message['from']['id'])
-    a = len(user_msg) < 5 and user_msg[0] == "💩" and message["chat"]["type"] == ("supergroup" if runAsProd else "private")
-    if a:
+    if len(user_msg) < 5 and user_msg[0] == "💩" and message["chat"]["type"] == ("supergroup" if runAsProd else "private"):
         msg = random.choice([
             "\"Sus excrementos era todo lo que daba al mundo; ni una sonrisa, ni un grito, ni un destello en la mirada, ni siquiera el propio olor.\" - Patrick Süskind, libro El perfume",
             "\"El hombre es el animal que observa sus propios excrementos.\" - Platon",
