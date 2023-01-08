@@ -18,8 +18,7 @@ def cagaste(m):
     print(message)
     user_msg = message['text']
     user_id = str(message['from']['id'])
-    a = len(user_msg) < 5 and user_msg[0] == "💩" and message["chat"]["type"] == ("supergroup" if runAsProd else "private")
-    if a:
+    if len(user_msg) < 5 and user_msg[0] == "💩" and message["chat"]["type"] == ("supergroup" if runAsProd else "private"):
         msg = random.choice(frasesDeMierda.getFrases(message))
         bot.reply_to(m, msg)
         global datosCacas
