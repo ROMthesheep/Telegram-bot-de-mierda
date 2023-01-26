@@ -3,11 +3,13 @@ import json
 import random
 import private as key
 import frasesDeMierda
+from datetime import date
+import resumenDeMierda
 
 with open('mierdas.json', 'r') as f:
   datosCacas = json.load(f)
 
-runAsProd = True 
+runAsProd = False 
 
 bot = telebot.TeleBot(key.PROD_TOKEN if runAsProd else key.DEV_TOKEN , threaded=False)
 bot.delete_webhook()
@@ -18,10 +20,15 @@ def cagaste(m):
     print(message)
     user_msg = message['text']
     user_id = str(message['from']['id'])
+    global datosCacas
+
+    if date.today().day == 1:
+        bot.send_message(m.chat.id,resumenDeMierda.resumenDelMes(datosCacas))
+
     if len(user_msg) < 5 and user_msg[0] == "💩" and message["chat"]["type"] == ("supergroup" if runAsProd else "private"):
         msg = random.choice(frasesDeMierda.getFrases(message))
         bot.reply_to(m, msg)
-        global datosCacas
+        
 
         try:
             datosCacas[user_id]["cacas"]
