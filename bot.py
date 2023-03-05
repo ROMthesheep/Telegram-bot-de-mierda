@@ -9,7 +9,7 @@ import resumenDeMierda
 with open('mierdas.json', 'r') as f:
   datosCacas = json.load(f)
 
-runAsProd = False 
+runAsProd = True 
 
 bot = telebot.TeleBot(key.PROD_TOKEN if runAsProd else key.DEV_TOKEN , threaded=False)
 bot.delete_webhook()
@@ -24,6 +24,9 @@ def cagaste(m):
 
     if date.today().day == 1:
         bot.send_message(m.chat.id,resumenDeMierda.resumenDelMes(datosCacas))
+
+    if date.today == date(2023,4,1):
+        bot.send_message(m.chat.id,"@romthesheep renuevame!")
 
     if len(user_msg) < 5 and user_msg[0] == "💩" and message["chat"]["type"] == ("supergroup" if runAsProd else "private"):
         msg = random.choice(frasesDeMierda.getFrases(message))

@@ -41,7 +41,7 @@ def getMierdasDelMes(mierdas: dict) -> dict:
     return newMierdas
 
 def makeMessage(data: dict) -> str:
-    mainText = "El mes de {mes} se han creado {totalMierdas}\nEl dia mas productivo fue el {topDia} de {mes} con un total de {goldenDayCont}\nLa hora favorita para cagar ha sido a las {goldenHour}\n\nEl top este mes ha sido el siguiente:\n\n".format(mes = meses[datetime.date.today().month-1], totalMierdas = data["total"], topDia = data["goldenDay"], goldenDayCont = data["goldenDayCont"],  goldenHour = data["goldenHour"])
+    mainText = "El mes de {mes} se han creado {totalMierdas}\nEl dia mas productivo fue el {topDia} de {mes} con un total de {goldenDayCont}\nLa hora favorita para cagar ha sido a las {goldenHour}\n\nEl top este mes ha sido el siguiente:\n\n".format(mes = meses[datetime.date.today().month-2], totalMierdas = data["total"], topDia = data["goldenDay"], goldenDayCont = data["goldenDayCont"],  goldenHour = data["goldenHour"])
     for index,participante in enumerate(data["mainStats"]):
         print(participante)
         mainText += "{quien} con {cuanto} mierdas en {posicion}º posicion\n".format(quien = participante,  cuanto = data["mainStats"][participante], posicion = index + 1)
