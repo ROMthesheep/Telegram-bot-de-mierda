@@ -25,9 +25,6 @@ def cagaste(m):
     if date.today().day == 1:
         bot.send_message(m.chat.id,resumenDeMierda.resumenDelMes(datosCacas))
 
-    if date.today == date(2023,4,1):
-        bot.send_message(m.chat.id,"@romthesheep renuevame!")
-
     if len(user_msg) < 5 and user_msg[0] == "💩" and message["chat"]["type"] == ("supergroup" if runAsProd else "private"):
         msg = random.choice(frasesDeMierda.getFrases(message))
         bot.reply_to(m, msg)
